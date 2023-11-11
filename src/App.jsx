@@ -1,9 +1,16 @@
+import Home from "./Pages/Home/Home"
+
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 function App() {
   return (
-    <>
-    <h1 className="w-screen h-screen">h</h1>
-    </>
+    <BrowserRouter>
+    <Routes>
+        <Route path="/" Component={Home} />
+        
+      </Routes>
+    
+    </BrowserRouter>
   )
 }
 
