@@ -7,7 +7,11 @@ export default {
     minHeight: {
       '3/5': '60%',
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'pattern':'url(assets/IconGrid.svg)',
+     },
+    },
     fontFamily: {
       Kalam: ['Kalam', 'cursive'],
     }

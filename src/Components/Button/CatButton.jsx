@@ -8,7 +8,7 @@ const handleClick = () => {
   navigate(`${category.id}`);
 };
 
-  return <button className="btn btn-outline btn-accent  border-2 " onClick={handleClick}>{category.name}</button>;
+  return <button className="btn btn-outline  btn-default  hover:border-accent border-2 hover:text-accent hover:bg-base-200 hover:underline " onClick={handleClick}>{category.name}</button>;
 }
 
 export default CatButton;

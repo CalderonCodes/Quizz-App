@@ -45,7 +45,7 @@ function Quizz() {
   }, []);
 
   return (
-    <div className="h-screen flex font-Kalam bg-base-200 flex-col justify-center items-center">
+    <div className="h-screen bg-pattern flex font-Kalam bg-base-200 flex-col justify-center items-center">
       {!loading && <QuizContainer questions={questions}/>}
     </div>
   );

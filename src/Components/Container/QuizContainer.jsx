@@ -59,7 +59,7 @@ function QuizContainer({ questions }) {
 
  
   return (
-    <div className="lg:w-1/2 w-11/12 relative min-h-3/5 bg-base-100 shadow-xl">
+    <div className="lg:w-1/2 w-11/12  relative min-h-3/5 bg-base-100 shadow-xl">
       {!completed  &&  (
         <div className="card-body  flex flex-col justify-center ">
           <h2 className="card-title">Question {currentQuestion + 1} / 15</h2>
