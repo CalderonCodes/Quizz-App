@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AnswerCard from "../Answers/AnswerCard";
 import Timer from "../Timer/Timer";
+import { v4 as uuidv4 } from 'uuid';
 
 function QuizContainer({ questions }) {
   const [loading, setLoading] = useState(true);
@@ -10,6 +11,13 @@ function QuizContainer({ questions }) {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [attempt, setAttempt] = useState({
+    id: 0,
+    date: '00/00/00',
+    preguntas: [],
+    respuestas: [],
+    score: 0,
+  });
 
 
 
@@ -39,6 +47,8 @@ function QuizContainer({ questions }) {
         setCurrentQuestion(currentQuestion + 1);
         setAnswers([...answers, answer]);
       }else{
+        
+        setAnswers([...answers, answer]);
         setCompleted(true);
       }
     } else {
@@ -52,11 +62,28 @@ function QuizContainer({ questions }) {
     }
   };
 
+  const handleAttempt = () => {
+    setAttempt({
+      
+      id: uuidv4(),
+      date: new Date().toLocaleDateString(),
+      preguntas: questions.map((question) => question.question),
+      respuestas: answers,
+      score: ((correctAnswers / 15)* 10).toFixed(3).slice(0, 3),
+    });
+  };
+
+  useEffect(() => {
+    handleAttempt();
+  }, [completed]);
 
   useEffect(() => {
     handleAnswer();
   }, [questions, currentQuestion]);
 
+  const handleTest = () => {
+    console.log(attempt);
+  };
  
   return (
     <div className="lg:w-1/2 w-11/12  relative min-h-3/5 bg-base-100 shadow-xl">
@@ -79,6 +106,7 @@ function QuizContainer({ questions }) {
                 .sort(() => Math.random() - 0.5)
                 .map((answer) => (
                   <AnswerCard
+                  key={uuidv4()}
                     answer={answer}
                     onAnswerSelected={handleAnswerSelected}
                     correctAnswer={currentCorrectAnswer}
@@ -94,6 +122,7 @@ function QuizContainer({ questions }) {
           <p className=" text-accent text-2xl">
             Correct answers: {correctAnswers}
           </p>
+          <button onClick={handleTest}> Hola </button>
           <p className="text-2xl">Score: </p>
           <p className="text-9xl font-bold text-center">
           {((correctAnswers / 15)* 10).toFixed(3).slice(0, 3)  }

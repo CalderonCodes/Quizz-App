@@ -7,7 +7,6 @@ import QuizContainer from "../../Components/Container/QuizContainer";
 function Quizz() {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const { id: categoryId } = useParams();
 
   const getData = async () => {
