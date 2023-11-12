@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AnswerCard from "../Answers/AnswerCard";
+import Timer from "../Timer/Timer";
 
 function QuizContainer({ questions }) {
   const [loading, setLoading] = useState(true);
@@ -8,13 +9,9 @@ function QuizContainer({ questions }) {
   const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [completed, setCompleted] = useState(false);
+  const [answers, setAnswers] = useState([]);
 
-  const handleNextQuestion = () => {
-    setCurrentQuestion(currentQuestion + 1);
-  };
-  const handlePrevQuestion = () => {
-    setCurrentQuestion(currentQuestion - 1);
-  };
+
 
   const handleAnswer = () => {
     const correctAnswers = questions[currentQuestion].correct_answer;
@@ -27,17 +24,26 @@ function QuizContainer({ questions }) {
     setLoading(false);
   };
 
-  const handleAnswerSelected = (isCorrect) => {
+
+  const handleTimeout = (isTimeout) => {
+    if (isTimeout) {
+      setCompleted(true);
+      console.log("timeout");
+          }
+  };
+
+  const handleAnswerSelected = (isCorrect, answer) => {
     if (isCorrect) {
-      console.log("Respuesta Correcta");
       setCorrectAnswers(correctAnswers + 1);
       if (currentQuestion < 14) {
         setCurrentQuestion(currentQuestion + 1);
+        setAnswers([...answers, answer]);
       }else{
         setCompleted(true);
       }
     } else {
-      console.log("Respuesta Incorrecta");
+      
+      setAnswers([...answers, answer]);
       if (currentQuestion < 14) {
         setCurrentQuestion(currentQuestion + 1);
       }else{
@@ -46,18 +52,25 @@ function QuizContainer({ questions }) {
     }
   };
 
+
   useEffect(() => {
     handleAnswer();
   }, [questions, currentQuestion]);
 
+ 
   return (
     <div className="lg:w-1/2 w-11/12 relative min-h-3/5 bg-base-100 shadow-xl">
-      {!completed && (
+      {!completed  &&  (
         <div className="card-body  flex flex-col justify-center ">
-          <h2 className="card-title">Pregunta {currentQuestion + 1} de 15</h2>
-          <p className="text-base text-accent text-right">
+          <h2 className="card-title">Question {currentQuestion + 1} / 15</h2>
+          <div className="flex">
+            
+          <p className="text-base text-accent">
             {questions[currentQuestion].difficulty}
           </p>
+          
+          <Timer onTimeout={handleTimeout} />
+          </div>
           <p className="text-xl">{questions[currentQuestion].question}</p>
           {!loading && (
             <div className="flex flex-col gap-3">
@@ -75,13 +88,13 @@ function QuizContainer({ questions }) {
           )}
         </div>
       )}
-{completed && (
+{completed  && (
         <div className="card-body  h-full flex flex-col justify-center items-center ">
-          <h2 className="card-title text-4xl mt-10">Examen Terminado!</h2>
+          <h2 className="card-title text-5xl  mt-10">Completed!</h2>
           <p className=" text-accent text-2xl">
-            Respuestas Correctas: {correctAnswers}
+            Correct answers: {correctAnswers}
           </p>
-          <p className="text-2xl">Calificacion: </p>
+          <p className="text-2xl">Score: </p>
           <p className="text-9xl font-bold text-center">
           {((correctAnswers / 15)* 10).toFixed(3).slice(0, 3)  }
           </p>

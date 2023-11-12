@@ -2,9 +2,10 @@ import React from 'react'
 
 function AnswerCard({answer, onAnswerSelected, correctAnswer}) {
   const isCorrect = answer === correctAnswer;
+  
 
   const handleAnswer = () => {
-    onAnswerSelected(isCorrect);
+    onAnswerSelected(isCorrect, answer);
   };
 
   return (
