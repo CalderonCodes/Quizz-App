@@ -1,10 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function CatButton({category}) {
-  return (
-    
-<button className="btn btn-outline btn-accent">Art</button>
-  )
+function CatButton({ category }) {
+  return <button className="btn btn-outline btn-accent">{category.name}</button>;
 }
 
-export default CatButton
+export default CatButton;
