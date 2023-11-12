@@ -1,7 +1,14 @@
 import React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function CatButton({ category }) {
-  return <button className="btn btn-outline btn-accent">{category.name}</button>;
+const navigate = useNavigate();
+
+const handleClick = () => {
+  navigate(`${category.id}`);
+};
+
+  return <button className="btn btn-outline btn-accent" onClick={handleClick}>{category.name}</button>;
 }
 
 export default CatButton;
