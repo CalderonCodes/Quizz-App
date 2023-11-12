@@ -4,6 +4,9 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    minHeight: {
+      '3/5': '60%',
+    },
     extend: {},
     fontFamily: {
       Kalam: ['Kalam', 'cursive'],
