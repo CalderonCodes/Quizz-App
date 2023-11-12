@@ -1,8 +1,14 @@
 import React from 'react'
 
-function AnswerCard({answer}) {
+function AnswerCard({answer, onAnswerSelected, correctAnswer}) {
+  const isCorrect = answer === correctAnswer;
+
+  const handleAnswer = () => {
+    onAnswerSelected(isCorrect);
+  };
+
   return (
-    <button className="btn btn-outline text-lg btn-default justify-start w-full hover:border-primary border-2 hover:text-primary hover:bg-base-100  hover:underline">{answer}</button>
+    <button onClick={handleAnswer} className={`btn btn-outline text-lg btn-default justify-start w-full hover:border-primary border-2 hover:text-primary hover:bg-base-100 hover:underline `}>{answer}</button>
   )
 }
 
