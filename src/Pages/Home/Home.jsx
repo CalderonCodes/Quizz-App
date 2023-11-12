@@ -26,7 +26,7 @@ function Home() {
         getData();
     }, []);
   return (
-    <div className="h-screen flex font-Kalam flex-col justify-center items-center">
+    <div className="h-screen flex font-Kalam bg-base-200 flex-col justify-center items-center">
       <h1 className="text-bold text-5xl">Quizz time!! </h1>
       <h2 className="text-bold text-3xl m-2">Select a category </h2>
       <div className="grid grid-cols-3 mt-5 w-full px-2 gap-3 ">
