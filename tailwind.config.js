@@ -9,7 +9,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'pattern':'url(assets/IconGrid.svg)',
+        'pattern':'url(/assets/IconGrid.svg)',
      },
     },
     fontFamily: {
