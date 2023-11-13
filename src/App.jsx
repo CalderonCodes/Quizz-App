@@ -5,6 +5,7 @@ import Quizz from "./Pages/Quiz/Quizz"
 import StatList from "./Pages/Stats/StatList"
 import AttemptDetails from "./Pages/Stats/AttemptDetails"
 import CategorySelection from "./Pages/CategorySelection/CategorySelection"
+import NotFound from "./Pages/NotFound/NotFound"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Quiz/:id" Component={Quizz} />
         <Route path="/attempts" Component={StatList} />
         <Route path="/attempts/:id" Component={AttemptDetails} />
+        <Route path="/*" Component={NotFound} />
         
       </Routes>
     
