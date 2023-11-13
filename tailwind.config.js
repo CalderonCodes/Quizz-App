@@ -6,6 +6,7 @@ export default {
   theme: {
     minHeight: {
       '3/5': '60%',
+      '4/5': '80%',
     },
     extend: {
       backgroundImage: {

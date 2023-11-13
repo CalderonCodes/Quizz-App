@@ -3,6 +3,8 @@ import AnswerCard from "../Answers/AnswerCard";
 import Timer from "../Timer/Timer";
 import { v4 as uuidv4 } from 'uuid';
 import useStore from "../../quizStore";
+import FinishButton from "../Button/FinishButton";
+import { Link } from "react-router-dom";
 
 function QuizContainer({ questions }) {
   const [loading, setLoading] = useState(true);
@@ -75,7 +77,7 @@ function QuizContainer({ questions }) {
     });
   };
 
-  const saveAttemt = () => { 
+  const saveAttempt = () => { 
 
     addAttempt(attempt);
   };
@@ -133,12 +135,13 @@ function QuizContainer({ questions }) {
           <p className=" text-accent text-2xl">
             Correct answers: {correctAnswers}
           </p>
-          <button onClick={handleTest}> Hola </button>
-          <button onClick={saveAttemt}> Hola2 </button>
-          <p className="text-2xl">Score: </p>
+          <button onClick={handleTest}>gg</button>
+          <p  className="text-2xl">Score: </p>
           <p className="text-9xl font-bold text-center">
           {((correctAnswers / 15)* 10).toFixed(3).slice(0, 3)  }
           </p>
+          <Link to={"/"} onClick={saveAttempt} className='btn btn-outline text-lg btn-default justify-start  hover:border-accent border-2 hover:text-accent hover:bg-base-100 hover:underline '>Done</Link>
+  
         </div>
       )}
     </div>
