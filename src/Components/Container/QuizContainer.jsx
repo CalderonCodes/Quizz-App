@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AnswerCard from "../Answers/AnswerCard";
 import Timer from "../Timer/Timer";
 import { v4 as uuidv4 } from 'uuid';
+import useStore from "../../quizStore";
 
 function QuizContainer({ questions }) {
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,8 @@ function QuizContainer({ questions }) {
     respuestas: [],
     score: 0,
   });
+  
+  const { attempts, addAttempt, removeAttempt } = useStore();
 
 
 
@@ -64,7 +67,6 @@ function QuizContainer({ questions }) {
 
   const handleAttempt = () => {
     setAttempt({
-      
       id: uuidv4(),
       date: new Date().toLocaleDateString(),
       preguntas: questions.map((question) => question.question),
@@ -73,9 +75,16 @@ function QuizContainer({ questions }) {
     });
   };
 
+  const saveAttemt = () => { 
+
+    addAttempt(attempt);
+  };
+
   useEffect(() => {
     handleAttempt();
   }, [completed]);
+
+
 
   useEffect(() => {
     handleAnswer();
@@ -83,7 +92,9 @@ function QuizContainer({ questions }) {
 
   const handleTest = () => {
     console.log(attempt);
+    console.log(attempts);
   };
+
  
   return (
     <div className="lg:w-1/2 w-11/12  relative min-h-3/5 bg-base-100 shadow-xl">
@@ -123,6 +134,7 @@ function QuizContainer({ questions }) {
             Correct answers: {correctAnswers}
           </p>
           <button onClick={handleTest}> Hola </button>
+          <button onClick={saveAttemt}> Hola2 </button>
           <p className="text-2xl">Score: </p>
           <p className="text-9xl font-bold text-center">
           {((correctAnswers / 15)* 10).toFixed(3).slice(0, 3)  }
