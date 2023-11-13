@@ -18,7 +18,7 @@ function AttemptDetails() {
   return (
     <div className="h-screen flex font-Kalam bg-base-200  bg-pattern flex-col justify-center items-center">
         <h1 className="text-bold text-center text-3xl lg:text-5xl">Attempt date: {attempt.date} </h1>
-        <div className="lg:w-1/2 w-11/12 p-5 flex flex-col overflow-y-auto gap-2 relative h-4/5 bg-base-100 shadow-xl">
+        <div className="lg:w-1/2 w-11/12 p-5 flex flex-col overflow-y-auto gap-2 relative h-4/5 bg-base-100 shadow-xl mt-3">
             
             {questionPairs.map(({ pregunta, respuesta }, index) => (
             <div key={uuidv4()}>

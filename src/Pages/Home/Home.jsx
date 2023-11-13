@@ -1,40 +1,26 @@
 import React, { useEffect, useState } from "react";
-import CatButton from "../../Components/Button/CatButton";
-import {getCategories} from "../../Services/quizService";
+import HomeButton from "../../Components/Button/HomeButton";
 
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Home() {
-    const [loading, setLoading] = useState(false);
-    const [categories, setCategories] = useState([])
+  const navigate = useNavigate();
+  const navigateToQuiz = () => {
+    navigate(`/quiz`);
+  };
 
-    const getData = async () => {
-        
-            try {
-            setLoading(true);
-            let response = await getCategories();
-            if (response) {
-                setCategories(response.trivia_categories);
-            } 
-            setLoading(false);
-        console.log(response);
-            } catch (error) {
-            console.error('Error al obtener datos de la API:', error);
-            }
-    };
-
-    useEffect(() => {
-        getData();
-    }, []);
+  const navigateToAttempts = () => {
+    navigate(`/attempts`);
+  };
   return (
-    <div className="h-screen flex font-Kalam bg-base-200  bg-pattern flex-col justify-center items-center">
+    <div className="h-screen flex font-Kalam bg-base-200  bg-pattern flex-col gap-5 justify-center items-center">
       <h1 className="text-bold text-5xl lg:text-6xl">Trivia Quiz!! </h1>
-      <h2 className="text-bold text-3xl m-2">Select a category </h2>
-      <div className="grid grid-cols-3 mt-5 w-full px-2 lg:px-16 gap-3 ">
-
-      {categories.map((category) => (
-                 <CatButton key={category.id} category={category}/>
-              ))}
+      <div className="flex justify-center w-full px-4 lg:px-16 gap-3 ">
+        <HomeButton value={"Start"} handleClick={navigateToQuiz} />
+        <HomeButton value={"My attempts"}  handleClick={navigateToAttempts}/>
       </div>
+
+      <div >Coded by <a className="underline italic" href="https://github.com/CalderonCodes">Christopher Calderon</a>.</div>
     </div>
   );
 }
