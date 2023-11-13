@@ -70,7 +70,7 @@ function QuizContainer({ questions }) {
   const handleAttempt = () => {
     setAttempt({
       id: uuidv4(),
-      date: new Date().toLocaleDateString(),
+      date: new Date().toLocaleString(),
       preguntas: questions.map((question) => question.question),
       respuestas: answers,
       score: ((correctAnswers / 15)* 10).toFixed(3).slice(0, 3),
