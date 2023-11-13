@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuestions } from "../../Services/quizService";
-import AnswerCard from "../../Components/Answers/AnswerCard";
 import QuizContainer from "../../Components/Container/QuizContainer";
 
 function Quizz() {
